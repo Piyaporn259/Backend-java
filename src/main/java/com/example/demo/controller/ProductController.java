@@ -14,22 +14,24 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.Employee;
+import com.example.demo.model.Product;
+
 
 @RestController
-public class EmployeeController {
+public class ProductController {
 
-	private List<Employee> data = new ArrayList<Employee>();
+	private List<Product> data = new ArrayList<Product>();
 	
-	@GetMapping("/employee")
-	public List<Employee> getEmployee() {
+	@GetMapping("/product")
+	public List<Product> getProducts() {
 		return data;
 	}
 	
-	@PostMapping("/employee")
-	public Employee addEmployee(@RequestBody Employee body) 
+	@PostMapping("/product")
+	public Product addProduct(@RequestBody Product body) 
 	{
 	   for(int i = 0; i < data.size(); i++) {
-		   if(data.get(i).getEmployeeId() == body.getEmployeeId()){
+		   if(data.get(i).getproductId() == body.getproductId()){
 			   return null;
 		   }
 	   }
@@ -37,37 +39,38 @@ public class EmployeeController {
 	   return body;
 	}
 	
-	@GetMapping("/employee/{employeeId}")
-	public Employee getEmployeeDetai(@PathVariable Integer employeeId) {
+	@GetMapping("/product/{productId}")
+	public Product getProjectDetai(@PathVariable Integer productId) {
 		
 		for (int i = 0; i < data.size(); i++) {
-			if (employeeId == data.get(i).getEmployeeId()) {
+			if (productId == data.get(i).getproductId()) {
 				return data.get(i);
 			}
 		}
 		
 		return null;
 	}
-	@PutMapping("/employee/{employeeId}")
-	public Employee updateEmployee(@PathVariable Integer employeeId,@RequestBody Employee body){
+	@PutMapping("/product/{productId}")
+	public Product updateProduct(@PathVariable Integer productId,@RequestBody Product body){
 		
 		for (int i = 0; i < data.size(); i++) {
-			if (employeeId  == data.get(i).getEmployeeId()) {
+			if (productId == data.get(i).getproductId()) {
 				
-				data.get(i).setFristName(body.getFristName());
-				data.get(i).setLastName(body.getLastName());
-				data.get(i).setEmployeeId(body.getSalary());
+				data.get(i).setproductName(body.getproductName());
+				data.get(i).setproductPrice(body.getproductPrice());
+				data.get(i).setproductAmount(body.getproductAmount());
+				data.get(i).setproductDetail(body.getproductDetail());
 				return data.get(i);
 				
 			}
 		}
 		return null;
 	}
-	
-	@DeleteMapping("/employee/{employeeId}")
-	public String deleteEmployee(@PathVariable Integer employeeId) {
+
+	@DeleteMapping("/product/{productId}")
+	public String deleteProduct(@PathVariable Integer productId) {
 		for (int i = 0; i < data.size(); i++) {
-			if (employeeId  == data.get(i).getEmployeeId()) {
+			if (productId  == data.get(i).getproductId()) {
 				data.remove(i);
 				return "delete sucess";
 			}
