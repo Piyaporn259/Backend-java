@@ -1,7 +1,19 @@
 package com.example.demo.model;
 
+import jakarta.annotation.Generated;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "employee")
 public class Employee {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
 	private Integer employeeId;
 	private String fristName;
 	private String lastName;
@@ -9,6 +21,14 @@ public class Employee {
 	
 	
 
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public Employee() {
 		super();
