@@ -1,10 +1,18 @@
 package com.example.demo.model;
 
+import java.security.PrivateKey;
+import java.util.List;
+
+import org.hibernate.bytecode.internal.bytebuddy.PrivateAccessorException;
+
 import jakarta.annotation.Generated;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -40,7 +48,19 @@ public class Employee {
 		this.fristName = fristName;
 		this.lastName = lastName;
 		this.salary = salary;
+
 	}
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+	@ManyToOne
+	@JoinColumn(name = "role_id")
+		private Role role;
+	
 	
 	public Integer getEmployeeId() {
 		return employeeId;
@@ -67,6 +87,21 @@ public class Employee {
 		this.salary = salary;
 	}
 	
-	
+	@OneToMany
+	@JoinColumn(name = "employee_id")
+	private List<Skill> skills;
+
+
+
+
+	public List<Skill> getSkills() {
+		return skills;
+	}
+
+	public void setSkills(List<Skill> skills) {
+		this.skills = skills;
+	}
+
+
 	
 }
