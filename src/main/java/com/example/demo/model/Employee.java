@@ -1,11 +1,6 @@
 package com.example.demo.model;
 
-import java.security.PrivateKey;
 import java.util.List;
-
-import org.hibernate.bytecode.internal.bytebuddy.PrivateAccessorException;
-
-import jakarta.annotation.Generated;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -90,9 +85,6 @@ public class Employee {
 	@OneToMany
 	@JoinColumn(name = "employee_id")
 	private List<Skill> skills;
-
-
-
 
 	public List<Skill> getSkills() {
 		return skills;
