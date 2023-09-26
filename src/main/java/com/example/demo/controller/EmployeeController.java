@@ -27,6 +27,7 @@ import com.example.demo.repository.RoleRepository;
 @RestController
 @CrossOrigin(origins = "*")
 public class EmployeeController {
+	
 
 	@Autowired
 	EmployeeRepository employeeRepository;
@@ -70,8 +71,8 @@ public class EmployeeController {
 			
 			return new ResponseEntity<>(employee, HttpStatus.CREATED);
 		} catch (Exception e) {
-			return new ResponseEntity<>("Integer server  error", HttpStatus.INTERNAL_SERVER_ERROR);
-
+			System.out.println(e.getMessage());
+			return new ResponseEntity<>("Internal server error.", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
 	}
